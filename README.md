@@ -1,3 +1,13 @@
+#Next-Template
+
+This app should be run in wsl, in Linux file system ($HOME/git) or hot reload will not work. Todo:
+
+authorization
+state
+api
+test
+maybe graphs
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
