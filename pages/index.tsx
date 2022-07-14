@@ -5,8 +5,19 @@ import { Breadcrumbs, Anchor } from '@mantine/core';
 import type { ReactElement } from 'react'
 import Layout from '../components/layout'
 import { NextPageWithLayout } from './_app';
+import useUser from '../lib/useUser'
+import { useRouter } from 'next/router'
+import fetchJson from '../lib/fetchJson'
+
 
 const Home: NextPageWithLayout = () => {
+
+  const { mutateUser } = useUser({
+    redirectTo: '/login',
+  })
+
+  // const { user, mutateUser } = useUser()
+  const router = useRouter()
 
   const items = [
     { title: 'Main', href: '#' },
@@ -28,6 +39,20 @@ const Home: NextPageWithLayout = () => {
         Get started by editing{' '}
         <code className={styles.code}>pages/index.tsx</code>
       </p>
+
+      <a
+        href="/api/logout"
+        onClick={async (e) => {
+          e.preventDefault()
+          mutateUser(
+            await fetchJson('/api/logout', { method: 'POST' }),
+            false
+          )
+          router.push('/login')
+        }}
+      >
+        Logout
+      </a>
 
       <div className={styles.grid}>
         <a href="https://nextjs.org/docs" className={styles.card}>

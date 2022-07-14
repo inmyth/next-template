@@ -1,13 +1,46 @@
-#Next-Template
-
+# Next-Template
+## Set up
 This app should be run in wsl, in Linux file system ($HOME/git) or hot reload will not work. Todo:
 
-authorization
+## Todo
+authentication
 state
 api
 test
 maybe graphs
 
+## Authentication
+Requires swr and iron-session.
+
+login:
+- login
+- mutateUser
+- fetchJson(/api/login) 
+  - The parameter points to the login logic inside /pages/api/login.
+- pages/api/login.ts sends the actual http request and saves user to session and returns it as json
+
+logout:
+- this is like login but uses fetchJson(/api/logout) where the session is destroyed 
+
+useUser:
+- returns mutateUser and user and manages redirect
+- useSWR<User>('/api/user') points to where session is translated to isLoggedIn.
+- mutateUser encapsulates fetchJson(/api/login) and fetchJson(/api/logout) which are a param for mutate
+  - https://swr.vercel.app/docs/mutation
+  - `mutate('/api/user', updateFn(user), options);` The updateFn should be a promise or asynchronous function to handle the remote mutation, it should return updated data.
+
+fetchJson:
+- fetchJson(/api/xxx)'s fetch *will* actually run the code in /api/xxx (because of iron-session withIronSessionApiRoute in /api/xxx)
+- looks it will be refreshed from time to time without calling the underlying api
+
+flow:
+- mutateUser
+- fetchJson(/api/xxx) which will run exported xxxRoute in /api/xxx due to iron-session
+- xxxRoute doesn't return anything but updates request (req) and response (res). This includes persisting session and embedding response from the underlying api.
+- fetchJson's fetch will return res which has the data embedded by xxxRoute.
+
+
+## Offical Doc
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
