@@ -6,7 +6,7 @@ import { NextPageWithLayout } from './_app';
 import useUser from '../lib/useUser'
 import { useRouter } from 'next/router'
 import fetchJson from '../lib/fetchJson'
-import { Table, Breadcrumbs, Anchor, AppShell, Navbar, Header, Card, Paper } from '@mantine/core';
+import { Container, Table, Breadcrumbs, Anchor, AppShell, Navbar, Header, Card, Paper, Stack } from '@mantine/core';
 
 const Home: NextPageWithLayout = () => {
 
@@ -43,59 +43,35 @@ const Home: NextPageWithLayout = () => {
   ));
 
   return (
-
-    <AppShell
-      padding="md"
-      header={<Header height={60} p="xs">{/* Header content */}</Header>}
-      styles={(theme) => ({
-        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
-      })}
-    >
+    <Layout>
       <main className={styles.main}>
-        <Breadcrumbs separator="→">{items}</Breadcrumbs>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <a
-          href="/api/logout"
-          onClick={async (e) => {
-            e.preventDefault()
-            mutateUser(
-              await fetchJson('/api/logout', { method: 'POST' }),
-              false
-            )
-            router.push('/login')
-          }}
-        >
-          Logout
-        </a>
-
-
-        <div className={styles.grid}>
-          <Paper
-            shadow="sm"
+        <Stack>
+          <Container
             p="xl">
-            <Table>
-              <thead>
-                <tr>
-                  <th>Element position</th>
-                  <th>Element name</th>
-                  <th>Symbol</th>
-                  <th>Atomic mass</th>
-                </tr>
-              </thead>
-              <tbody>{tableRows}</tbody>
-            </Table>
-          </Paper>
-        </div>
+            <Breadcrumbs separator="→">{items}</Breadcrumbs>
+          </Container>
+
+          <div className={styles.grid}>
+            <Paper
+              shadow="sm"
+              p="xl">
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Element position</th>
+                    <th>Element name</th>
+                    <th>Symbol</th>
+                    <th>Atomic mass</th>
+                  </tr>
+                </thead>
+                <tbody>{tableRows}</tbody>
+              </Table>
+            </Paper>
+          </div>
+        </Stack>
+
       </main>
-    </AppShell>
+    </Layout>
   )
 }
 
