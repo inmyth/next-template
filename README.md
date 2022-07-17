@@ -2,12 +2,13 @@
 ## Set up
 This app should be run in wsl, in Linux file system ($HOME/git) or hot reload will not work. Todo:
 
-## Todo
-authentication
-state
-api
-test
-maybe graphs
+- authentication
+- state
+- routing
+- api
+- test
+- clearable notification
+- maybe graphs
 
 ## Authentication
 Requires swr and iron-session.
