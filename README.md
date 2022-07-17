@@ -11,6 +11,7 @@ maybe graphs
 
 ## Authentication
 Requires swr and iron-session.
+In this app, `userUser` and redirection happens in HeaderResponsive.
 
 login:
 - login
@@ -39,6 +40,18 @@ flow:
 - xxxRoute doesn't return anything but updates request (req) and response (res). This includes persisting session and embedding response from the underlying api.
 - fetchJson's fetch will return res which has the data embedded by xxxRoute.
 
+
+## Routing
+- Doc: https://swr.vercel.app/docs/getting-started.
+- Example : https://github.com/vercel/swr/tree/bd0f5b59fed7ba044348c115efe89658408341ed/examples/api-hooks
+- Use useXXX to update state
+- implemented with element.ts, useElement.ts and `[elements].ts`
+
+flow:
+- use dynamic routing for pages that depend on params. 
+- define a use, in this case useElement that acts as an alias to useSWR (in lib)
+- the path in useSWR points to the real fetching logic in elements. 
+- fetchJson will do the final processing on the response
 
 ## Offical Doc
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

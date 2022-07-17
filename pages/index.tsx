@@ -7,12 +7,9 @@ import useUser from '../lib/useUser'
 import { useRouter } from 'next/router'
 import fetchJson from '../lib/fetchJson'
 import { Container, Table, Breadcrumbs, Anchor, AppShell, Navbar, Header, Card, Paper, Stack } from '@mantine/core';
+import Link from 'next/link'
 
 const Home: NextPageWithLayout = () => {
-
-  const { mutateUser } = useUser({
-    redirectTo: '/login',
-  })
 
   // const { user, mutateUser } = useUser()
   const router = useRouter()
@@ -36,10 +33,22 @@ const Home: NextPageWithLayout = () => {
   ].map((element) => (
     <tr key={element.name}>
       <td>{element.position}</td>
-      <td>{element.name}</td>
+      <td>
+        <Link
+          href={{
+            pathname: '/level1/[element]',
+            query: { element: element.name },
+          }}
+        >
+          <a>{element.name}</a>
+        </Link>
+
+      </td>
       <td>{element.symbol}</td>
       <td>{element.mass}</td>
     </tr>
+
+
   ));
 
   return (
