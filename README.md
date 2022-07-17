@@ -9,6 +9,7 @@ This app should be run in wsl, in Linux file system ($HOME/git) or hot reload wi
 - test
 - clearable notification
 - maybe graphs
+- amplify
 
 ## Authentication
 Requires swr and iron-session.
