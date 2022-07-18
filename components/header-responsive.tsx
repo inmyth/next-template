@@ -97,32 +97,40 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
 
     const items = links.map((link) => (
         <Link
-            key={link.label}
+            passHref
             href={link.link}
-            className={cx(classes.link, { [classes.linkActive]: active === link.link })}
-            onClick={(event) => {
-                event.preventDefault();
-                setActive(link.link);
-                toggleOpened(false);
-            }}
+            key={link.label}
         >
-            {link.label}
+            <a
+                key={link.label}
+                href={link.link}
+                className={cx(classes.link, { [classes.linkActive]: active === link.link })}
+                onClick={(event) => {
+                    event.preventDefault();
+                    setActive(link.link);
+                    toggleOpened(false);
+                }}
+            >
+                {link.label}
+            </a>
         </Link>
     ));
 
     const logout = <Link
+        passHref
         href="/api/logout"
-        className={cx(classes.link)}
-        onClick={async (e) => {
-            e.preventDefault()
-            mutateUser(
-                await fetchJson('/api/logout', { method: 'POST' }),
-                false
-            )
-            router.push('/login')
-        }}
     >
-        Logout
+        <a className={cx(classes.link)}
+            onClick={async (e) => {
+                e.preventDefault()
+                mutateUser(
+                    await fetchJson('/api/logout', { method: 'POST' }),
+                    false
+                )
+                router.push('/login')
+            }}>
+            Logout
+        </a>
     </Link>
 
     return (
