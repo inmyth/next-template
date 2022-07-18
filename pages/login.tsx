@@ -1,9 +1,8 @@
-import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
+import { TextInput, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Login.module.css'
 import type { ReactElement } from 'react'
 import Layout from '../components/layout'
-import { NextPageWithLayout } from './_app';
 import useUser from '../lib/useUser'
 import React, { useState } from 'react'
 import fetchJson, { FetchError } from '../lib/fetchJson'
