@@ -5,6 +5,7 @@ import { MantineLogo } from '../shared/MantineLogo';
 import useUser from '../lib/useUser'
 import { useRouter } from 'next/router'
 import fetchJson from '../lib/fetchJson'
+import Link from 'next/link'
 
 const HEADER_HEIGHT = 60;
 
@@ -95,7 +96,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
     const router = useRouter()
 
     const items = links.map((link) => (
-        <a
+        <Link
             key={link.label}
             href={link.link}
             className={cx(classes.link, { [classes.linkActive]: active === link.link })}
@@ -106,10 +107,10 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
             }}
         >
             {link.label}
-        </a>
+        </Link>
     ));
 
-    const logout = <a
+    const logout = <Link
         href="/api/logout"
         className={cx(classes.link)}
         onClick={async (e) => {
@@ -122,7 +123,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
         }}
     >
         Logout
-    </a>
+    </Link>
 
     return (
         <Header height={HEADER_HEIGHT} className={classes.root}>
