@@ -11,6 +11,10 @@ This app should be run in wsl, in Linux file system ($HOME/git) or hot reload wi
 - maybe graphs
 - amplify
 
+Issues:
+- For now use next 12.0.0 as the latest version causes problem with Amplify and SWC
+https://stackoverflow.com/questions/72974024/next-deployment-fails-only-on-amplify
+
 ## Authentication
 Requires swr and iron-session.
 In this app, `userUser` and redirection happens in HeaderResponsive.
